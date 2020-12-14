@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <header th:include="fragments/header :: header">
+    <header th:include="fragments/header :: header" class="header--main-page">
     </header>
 
     <section id="stats" class="stats">
@@ -77,7 +77,7 @@
 
         <ul class="help--slides-items">
           <li>
-            <div class="col">
+            <div class="col" th:each="">
               <div class="title">Fundacja "Dbam o Zdrowie"</div>
               <div class="subtitle">Cel i misja: Pomoc dzieciom z ubogich rodzin.</div>
             </div>
