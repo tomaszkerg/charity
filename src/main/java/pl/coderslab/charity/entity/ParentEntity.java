@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 @MappedSuperclass
-@Entity
 @Getter
 @Setter
 @AllArgsConstructor @NoArgsConstructor @ToString
@@ -25,7 +24,7 @@ public abstract class ParentEntity implements Serializable {
     public LocalDateTime createdOn;
 
     @UpdateTimestamp
-    @Column(name = "created_on")
+    @Column(name = "updated_on")
     public LocalDateTime updatedOn;
 
     @Override
