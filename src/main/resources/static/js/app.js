@@ -163,7 +163,14 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 5;
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
-      // TODO: get data from inputs and show them in summary
+      const summary = document.querySelector(".summary");
+      const summaryAddress = document.querySelectorAll(".form-section--columns")[1];
+      let title1 = document.createElement("h4");
+      title1.innerText = "Adres odbioru:";
+      summaryAddress.firstElementChild.appendChild(title1);
+      let ul1 = document.createElement("ul");
+      summaryAddress.firstElementChild.appendChild(ul1);
+
     }
 
   }
