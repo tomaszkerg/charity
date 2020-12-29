@@ -163,18 +163,59 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 5;
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
-      const summary = document.querySelector(".summary");
-      const summaryAddress = document.querySelectorAll(".form-section--columns")[1];
-      let title1 = document.createElement("h4");
-      title1.innerText = "Adres odbioru:";
-      summaryAddress.firstElementChild.appendChild(title1);
-      let ul1 = document.createElement("ul");
-      summaryAddress.firstElementChild.appendChild(ul1);
+      // const summary = document.querySelector(".summary");
+      // const summaryAddress = document.querySelectorAll(".form-section--columns")[1];
+      // let title1 = document.createElement("h4");
+      // title1.innerText = "Adres odbioru:";
+      // summaryAddress.firstElementChild.appendChild(title1);
+      // let ul1 = document.createElement("ul");
+      // summaryAddress.firstElementChild.appendChild(ul1);
+      $("#summary-street").text($("#street").val());
+      $("#summary-city").text($("#city").val());
+      $("#summary-zipCode").text($("#zipCode").val());
+      $("#summary-phone").text($("#phone").val());
+      $("#summary-date").text($("#date").val());
+      $("#summary-time").text($("#time").val());
+
+      $("#summary-quantity").text($("#quantity").val());
+
+      if ($("#comment").val() === '') {
+        $("#summary-comment").text("Brak komentarza").val();
+      } else {
+        $("#summary-comment").text($("#comment").val());
+      }
+
+      var categoriesJQuery = $("div[id^=category-]")
+          .filter(function () {
+            const checkbox = $(this).find("input");
+            return $(checkbox).is(":checked");
+          })
+          .map(function () {
+            const label = $(this).find(".description");
+            return $(label).text();
+          })
+          .get()
+
+      $('#summary-category').text(categoriesJQuery);
+
+      var institutionJQuery = $("div[id^=institution-]")
+          .filter(function () {
+            const radio = $(this).find("input");
+            return $(radio).is(":checked");
+          })
+          .map(function () {
+            const label = $(this).find(".title");
+            return $(label).text();
+          })
+          .get()
+
+      $('#summary-institution').text(institutionJQuery)
 
     }
 
   }
-  const form = document.querySelector(".form--steps");
+  const form = document.querySelector(".form--step" +
+      "mas");
   if (form !== null) {
     new FormSteps(form);
   }
