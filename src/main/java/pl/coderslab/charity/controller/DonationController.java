@@ -2,7 +2,6 @@ package pl.coderslab.charity.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import pl.coderslab.charity.service.CategoryServiceI;
 import pl.coderslab.charity.service.DonationServiceI;
 import pl.coderslab.charity.service.InstitutionServiceI;
@@ -25,6 +24,5 @@ public class DonationController {
         return "form";
     }
 
-    @ModelAttribute
 
 }
