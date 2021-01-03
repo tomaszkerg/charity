@@ -7,5 +7,7 @@ import pl.coderslab.charity.entity.UserEntity;
 public interface UserServiceI {
 
     UserEntity save(UserDto userDto);
+    String getFirstNameByEmail(String email);
+    Long getIdByEmail(String email);
 
 }

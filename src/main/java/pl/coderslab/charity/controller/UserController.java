@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import pl.coderslab.charity.dto.CategoryDto;
 import pl.coderslab.charity.dto.UserDto;
 import pl.coderslab.charity.service.UserService;
+import pl.coderslab.charity.utils.UserUtils;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -31,6 +32,7 @@ public class UserController {
 
     @GetMapping("/register")
     public String getFrom(Model model){
+
         UserDto userDto = new UserDto();
         model.addAttribute("userDto",userDto);
         return "/register";
@@ -52,11 +54,11 @@ public class UserController {
 
     @ModelAttribute("firstName")
     public String loadFirstName(){
-        return userService.listOfCategories();
+        return userService.getFirstNameByEmail(UserUtils.username());
     }
 
     @ModelAttribute("userId")
-    public String loadFirstName(){
-        return userService.listOfCategories();
+    public Long loadUserId(){
+        return userService.getIdByEmail(UserUtils.username());
     }
 }

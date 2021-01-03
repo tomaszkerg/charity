@@ -26,4 +26,14 @@ public class UserService implements UserServiceI{
         userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
         return userRepository.save(userEntity);
     }
+
+    @Override
+    public String getFirstNameByEmail(String email) {
+        return userRepository.getFirstByEmail(email).getFirstName();
+    }
+
+    @Override
+    public Long getIdByEmail(String email) {
+        return userRepository.getFirstByEmail(email).getId();
+    }
 }

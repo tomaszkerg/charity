@@ -6,24 +6,7 @@
     <title>Title</title>
 </head>
 <body>
-<header th:fragment="header">
-    <nav class="container container--70">
-        <ul th:if="${#request.remoteUser} == null" class="nav--actions">
-            <li><a th:href="@{/login}" class="btn btn--small btn--without-border">Zaloguj</a></li>
-            <li><a th:href="@{/register}" class="btn btn--small btn--highlighted">Załóż konto</a></li>
-        </ul>
-        <ul th:if="${#request.remoteUser} != null" class="nav--actions">
-            <li class="logged-user">
-                <div th:text="'Witaj: ' + ${firstName}"></div>
-                <ul class="dropdown">
-                    <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin}">Panel admina</a></li>
-                    <li><a th:href="@{/myProfile/{id}(id=${userId})}">Zarzadzaj kontem</a></li>
-                    <li sec:authorize="!hasRole('ROLE_ADMIN')"><a th:href="@{/logged/donationList}">Moje zbiórki</a></li>
-                    <li><a th:href="@{/logout}">Wyloguj</a></li>
-                </ul>
-            </li>
-        </ul>
-
+<div th:fragment="header">
         <ul>
             <li><a href="" class="btn btn--without-border active">Start</a></li>
             <li><a href="#steps" class="btn btn--without-border">O co chodzi?</a></li>
@@ -32,16 +15,6 @@
             <li><a href="form.html" class="btn btn--without-border">Przekaż dary</a></li>
             <li><a href="#contact" class="btn btn--without-border">Kontakt</a></li>
         </ul>
-    </nav>
-
-    <div class="slogan container container--90">
-        <div class="slogan--item">
-            <h1>
-                Zacznij pomagać!<br />
-                Oddaj niechciane rzeczy w zaufane ręce
-            </h1>
-        </div>
-    </div>
-</header>
+</div>
 </body>
 </html>

@@ -6,10 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
   </head>
   <body>
-    <header th:include="fragments/header :: header" class="header--main-page">
+    <header class="header--main-page">
+      <nav class="container container--70">
+        <span th:include="fragments/loginCheck :: loginCheck"></span>
+
+        <span th:include="fragments/header :: header"></span>
+        <span sec:authorize="hasRole('ROLE_ADMIN')">
+        <br/><br/><br/><br/>
+        <div  style="font-weight: bold;font-size: 20px">Panel Administratora</div>
+        <span th:include="fragments/adminMenu :: adminMenu"></span>
+        </span>
+      </nav>
+
+      <div class="slogan container container--90">
+        <div class="slogan--item">
+          <h1>
+            Zacznij pomagać!<br />
+            Oddaj niechciane rzeczy w zaufane ręce
+          </h1>
+        </div>
+      </div>
     </header>
 
     <section id="stats" class="stats">
