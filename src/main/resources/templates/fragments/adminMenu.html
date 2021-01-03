@@ -6,6 +6,53 @@
     <title>Title</title>
 </head>
 <body>
-<div th:fragment="adminMenu"></div>
+<div th:fragment="adminMenu">
+    <ul>
+        <li sec:authorize="hasRole('ROLE_ADMIN')">
+            <ul class="nav--actions">
+                <li class="logged-user">
+                    <div>Użytkownicy</div>
+                    <ul class="dropdown">
+                        <li><a th:href="@{/admin/usersList}">Wyświetl liste</a></li>
+                        <li><a th:href="@{/admin/formUser}">Stwórz Użytkownika</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li sec:authorize="hasRole('ROLE_ADMIN')">
+            <ul class="nav--actions">
+                <li class="logged-user">
+                    <div>Administratorzy</div>
+                    <ul class="dropdown">
+                        <li><a th:href="@{/admin/usersList}">Wyświetl liste</a></li>
+                        <li><a th:href="@{/admin/formUser}">Stwórz Administratora</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li sec:authorize="hasRole('ROLE_ADMIN')">
+            <ul class="nav--actions">
+                <li class="logged-user">
+                    <div>Fundacje</div>
+                    <ul class="dropdown">
+                        <li><a th:href="@{/admin/usersList}">Wyświetl liste</a></li>
+                        <li><a th:href="@{/admin/formUser}">Stwórz Fundacje</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li sec:authorize="hasRole('ROLE_ADMIN')">
+            <ul class="nav--actions">
+                <li class="logged-user">
+                    <div>Kategorie</div>
+                    <ul class="dropdown">
+                        <li><a th:href="@{/admin/usersList}">Wyświetl liste</a></li>
+                        <li><a th:href="@{/admin/formUser}">Stwórz Kategorie</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
 </body>
 </html>
