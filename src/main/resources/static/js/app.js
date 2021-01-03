@@ -163,60 +163,130 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 5;
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
-      // const summary = document.querySelector(".summary");
-      // const summaryAddress = document.querySelectorAll(".form-section--columns")[1];
-      // let title1 = document.createElement("h4");
-      // title1.innerText = "Adres odbioru:";
-      // summaryAddress.firstElementChild.appendChild(title1);
-      // let ul1 = document.createElement("ul");
-      // summaryAddress.firstElementChild.appendChild(ul1);
-      $("#summary-street").text($("#street").val());
-      $("#summary-city").text($("#city").val());
-      $("#summary-zipCode").text($("#zipCode").val());
-      $("#summary-phone").text($("#phone").val());
-      $("#summary-date").text($("#date").val());
-      $("#summary-time").text($("#time").val());
-
-      $("#summary-quantity").text($("#quantity").val());
-
-      if ($("#comment").val() === '') {
-        $("#summary-comment").text("Brak komentarza").val();
-      } else {
-        $("#summary-comment").text($("#comment").val());
-      }
-
-      var categoriesJQuery = $("div[id^=category-]")
-          .filter(function () {
-            const checkbox = $(this).find("input");
-            return $(checkbox).is(":checked");
-          })
-          .map(function () {
-            const label = $(this).find(".description");
-            return $(label).text();
-          })
-          .get()
-
-      $('#summary-category').text(categoriesJQuery);
-
-      var institutionJQuery = $("div[id^=institution-]")
-          .filter(function () {
-            const radio = $(this).find("input");
-            return $(radio).is(":checked");
-          })
-          .map(function () {
-            const label = $(this).find(".title");
-            return $(label).text();
-          })
-          .get()
-
-      $('#summary-institution').text(institutionJQuery)
+      // TODO: get data from inputs and show them in summary
 
     }
 
   }
-  const form = document.querySelector(".form--step" +
-      "mas");
+  const form = document.querySelector(".form--steps");
   if (form !== null) {
     new FormSteps(form);
   }
+
+  const addB = document.getElementById("addB");
+
+  addB.addEventListener("click", function () {
+
+    const bagsQty = document.getElementById("bags-qty");
+    const institutionEvent = document.getElementById("institution-event");
+    const categoriesEvent = document.getElementById("categories-event");
+    const streetEvent = document.getElementById("street-event");
+    const cityEvent = document.getElementById("city-event");
+    const zipCodeEvent = document.getElementById("zipCode-event");
+    const phoneEvent = document.getElementById("phone-event");
+    const dateEvent = document.getElementById("date-event");
+    const timeEvent = document.getElementById("time-event");
+    const commentEvent = document.getElementById("comment-event");
+
+    const quantity = document.getElementById("quantity");
+
+    const institution = document.querySelector('input[class="checkboxRadio"]:checked ~ span.description div.title').innerHTML;
+    var inputElements = document.querySelectorAll('input[name="categories"]:checked ~ span.description');
+    const street = document.getElementById("street");
+    const city = document.getElementById("city");
+    const zipCode = document.getElementById("zipCode");
+    const phone = document.getElementById("phone");
+    const date = document.getElementById("date");
+    const time = document.getElementById("time");
+    const comment = document.getElementById("comment");
+
+    const newRow = document.createElement("span");
+    const institutionNew = document.createElement("span");
+    const categoriesNew = document.createElement("span");
+    const streetNew = document.createElement("span");
+    const cityNew = document.createElement("span");
+    const zipCodeNew = document.createElement("span");
+    const phoneNew = document.createElement("span");
+    const dateNew = document.createElement("span");
+    const timeNew = document.createElement("span");
+    const commentNew = document.createElement("span");
+
+
+
+    var checkedValue = "";
+    var categories;
+    for(var i=0; inputElements[i]; ++i){
+      if(inputElements[i].innerHTML){
+        categories = inputElements[i].innerHTML;
+        checkedValue +=  categories + ", " ;
+      }
+    }
+
+    console.log(
+        checkedValue
+
+        ,quantity.value
+        ,street.value
+        ,city.value
+        ,zipCode.value
+        ,phone.value
+        ,date.value
+        ,time.value
+        ,comment.value
+    )
+
+    newRow.innerHTML = `${quantity.value} `
+    institutionNew.innerHTML = institution;
+    categoriesNew.innerHTML = checkedValue;
+    streetNew.innerHTML = `${street.value} `
+    cityNew.innerHTML = `${city.value} `
+    zipCodeNew.innerHTML = `${zipCode.value} `
+    phoneNew.innerHTML = `${phone.value} `
+    dateNew.innerHTML = `${date.value} `
+    timeNew.innerHTML = `${time.value} `
+    commentNew.innerHTML = `${comment.value} `
+
+
+
+    bagsQty.appendChild(newRow)
+    institutionEvent.appendChild(institutionNew)
+    categoriesEvent.appendChild(categoriesNew)
+    streetEvent.appendChild(streetNew)
+    cityEvent.appendChild(cityNew)
+    zipCodeEvent.appendChild(zipCodeNew)
+    phoneEvent.appendChild(phoneNew)
+    dateEvent.appendChild(dateNew)
+    timeEvent.appendChild(timeNew)
+    commentEvent.appendChild(commentNew)
+  })
+
+  const ret = document.getElementById("ret");
+  ret.addEventListener("click", function () {
+    var bagsQty = document.getElementById("bags-qty").lastElementChild;
+    var institutionEvent = document.getElementById("institution-event").lastElementChild;
+    var categoriesEvent = document.getElementById("categories-event").lastElementChild;
+    var streetEvent = document.getElementById("street-event").lastElementChild;
+    var cityEvent = document.getElementById("city-event").lastElementChild;
+    var zipCodeEvent = document.getElementById("zipCode-event").lastElementChild;
+    var phoneEvent = document.getElementById("phone-event").lastElementChild;
+    var dateEvent = document.getElementById("date-event").lastElementChild;
+    var timeEvent = document.getElementById("time-event").lastElementChild;
+    var commentEvent = document.getElementById("comment-event").lastElementChild;
+
+    bagsQty.innerHTML = "";
+    institutionEvent.innerHTML = "";
+    categoriesEvent.innerHTML = "";
+    streetEvent.innerHTML = "";
+    cityEvent.innerHTML = "";
+    zipCodeEvent.innerHTML = "";
+    phoneEvent.innerHTML = "";
+    bagsQty.innerHTML = "";
+    dateEvent.innerHTML = "";
+    timeEvent.innerHTML = "";
+    commentEvent.innerHTML = "";
+  })
+
+
+
+
 });
