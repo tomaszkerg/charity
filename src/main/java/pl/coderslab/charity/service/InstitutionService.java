@@ -2,13 +2,16 @@ package pl.coderslab.charity.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.coderslab.charity.converter.InstitutionConverter;
 import pl.coderslab.charity.converter.InstitutionShowTwoConverter;
+import pl.coderslab.charity.dto.InstitutionDto;
 import pl.coderslab.charity.dto.InstitutionShowTwoDto;
 import pl.coderslab.charity.entity.InstitutionEntity;
 import pl.coderslab.charity.repository.InstitutionRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class InstitutionService implements InstitutionServiceI{
@@ -34,5 +37,12 @@ public class InstitutionService implements InstitutionServiceI{
             twoInstitutions.add(InstitutionShowTwoConverter.toDto(institutions.get(i),institutions.get(i+1)));
         }
         return twoInstitutions;
+    }
+
+    @Override
+    public List<InstitutionDto> listOfInstitutions() {
+        return institutionRepository.findAll().stream()
+                .map(InstitutionConverter::toDto)
+                .collect(Collectors.toList());
     }
 }

@@ -18,4 +18,5 @@ public class InstitutionEntity extends ParentEntity{
 
     private String name;
     private String description;
+    private Boolean enabled = Boolean.FALSE;
 }

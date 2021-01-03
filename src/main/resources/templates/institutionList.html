@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src ="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <link th:href="@{/css/style.css}" rel='stylesheet' type='text/css' />
+
+</head>
+<body>
+<header>
+    <nav class="container container--70">
+        <span th:include="fragments/loginCheck :: loginCheck"></span>
+
+        <span th:include="fragments/header :: header"></span>
+        <span sec:authorize="hasRole('ROLE_ADMIN')">
+        <br/><br/><br/><br/>
+        <div  style="font-weight: normal;font-size: 15px">Panel Admina</div>
+        <span th:include="fragments/adminMenu :: adminMenu"></span>
+        </span>
+    </nav>
+</header>
+
+<section class="login-page">
+    <h2 th:text="'Hej '+ ${firstName} + ' ,poniżej znajdziesz informację dotyczące Fundacji z którymi współpracujemy'"> </h2>
+</section>
+
+<div style="text-align: center;background-color:  #deb1a7;border-radius: 3px">
+    <div style="color: black;text-align: center;font-size: 20px;font-weight: bold;" th:text="'Lista fundacji'"></div><br/><br/>
+    <table  style="color: black;text-align: left;width:100%;border: solid 1px;font-size: 20px">
+        <tr style="border: solid 1px">
+            <th class="tables">Nazwa Fundacji</th>
+            <th class="tables">Opis</th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')" class="tables">Edytuj</th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')" class="tables" id="delete">Usuń</th>
+        </tr>
+        <tr style="border: solid 1px" th:each="institution: ${institutions}">
+
+            <td th:text="${institution.name}"></td>
+            <td th:text="${institution.description}"></td>
+            <td  sec:authorize="hasRole('ROLE_ADMIN')" style="cursor: pointer" title="Naciśnij żeby sprawdzić szczegóły i móc edytować" class="tables" >
+                <a  th:href="@{/admin/editInstitution/{id}(id=${institution.id})}"><div th:text="${institution.name}"></div></a>
+            </td>
+            <td  sec:authorize="hasRole('ROLE_ADMIN')" style="cursor: pointer" title="Naciśnij żeby sprawdzić szczegóły i móc edytować" class="tables" >
+                <a  th:href="@{/admin/deleteInstitution/{id}(id=${institution.id})}"><div th:text="${institution.name}"></div></a>
+            </td>
+        </tr>
+    </table>
+    <br/>
+    <a th:href="@{/admin/formInstitution}"><button style="cursor:pointer;font-size: 20px;font-weight: bold;margin-left: 87%">Dodaj Fundacje</button></a>
+</div><br/><br/>
+
+<footer>
+    <span th:include="fragments/footer :: footer"></span>
+</footer>
+</body>
+</html>
