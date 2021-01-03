@@ -1,6 +1,7 @@
 package pl.coderslab.charity.entity;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -27,7 +28,10 @@ public class DonationEntity extends ParentEntity{
     private String street;
     private String city;
     private String zipCode;
+    private String phoneNumber;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
+    @DateTimeFormat(pattern = "hh-mm")
     private LocalTime pickUpTime;
     private String pickUpComment;
 }
