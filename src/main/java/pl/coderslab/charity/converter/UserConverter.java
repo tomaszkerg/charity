@@ -1,9 +1,11 @@
 package pl.coderslab.charity.converter;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import pl.coderslab.charity.dto.UserDto;
 import pl.coderslab.charity.entity.UserEntity;
 
 public class UserConverter {
+
 
     public static UserEntity toEntity(UserDto userDto){
         return UserEntity.builder()
