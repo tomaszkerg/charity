@@ -29,11 +29,12 @@ public class UserService implements UserServiceI{
 
     @Override
     public String getFirstNameByEmail(String email) {
-        return userRepository.getFirstByEmail(email).getFirstName();
+            return userRepository.findFirstnameByEmail(email);
     }
 
     @Override
     public Long getIdByEmail(String email) {
-        return userRepository.getFirstByEmail(email).getId();
+            return userRepository.findUserIdByEmail(email);
+
     }
 }

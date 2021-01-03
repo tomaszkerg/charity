@@ -8,7 +8,7 @@
     </ul>
     <ul th:if="${#request.remoteUser} != null" class="nav--actions">
         <li class="logged-user">
-            <div th:text="'Witaj: ' +${firstName}"></div>
+            <div th:text="'Witaj: ' +${#request.remoteUser}"></div>
             <ul class="dropdown">
                 <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin}">Panel admina</a></li>
                 <li><a th:href="@{/myProfile/{id}(id=${userId})}">Zarzadzaj kontem</a></li>
