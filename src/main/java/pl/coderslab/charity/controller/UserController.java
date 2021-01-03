@@ -7,10 +7,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import pl.coderslab.charity.dto.CategoryDto;
 import pl.coderslab.charity.dto.UserDto;
 import pl.coderslab.charity.service.UserService;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -41,5 +43,20 @@ public class UserController {
         }
         userService.save(userDto);
         return "redirect:";
+    }
+
+    @GetMapping("/admin")
+    public String adminPanel(Model model) {
+        return "adminPanel";
+    }
+
+    @ModelAttribute("firstName")
+    public String loadFirstName(){
+        return userService.listOfCategories();
+    }
+
+    @ModelAttribute("userId")
+    public String loadFirstName(){
+        return userService.listOfCategories();
     }
 }

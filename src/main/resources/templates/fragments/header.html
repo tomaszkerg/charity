@@ -8,9 +8,20 @@
 <body>
 <header th:fragment="header">
     <nav class="container container--70">
-        <ul class="nav--actions">
-            <li><a href="/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
-            <li><a href="/register" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+        <ul th:if="${#request.remoteUser} == null" class="nav--actions">
+            <li><a th:href="@{/login}" class="btn btn--small btn--without-border">Zaloguj</a></li>
+            <li><a th:href="@{/register}" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+        </ul>
+        <ul th:if="${#request.remoteUser} != null" class="nav--actions">
+            <li class="logged-user">
+                <div th:text="'Witaj: ' + ${firstName}"></div>
+                <ul class="dropdown">
+                    <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin}">Panel admina</a></li>
+                    <li><a th:href="@{/myProfile/{id}(id=${userId})}">Zarzadzaj kontem</a></li>
+                    <li sec:authorize="!hasRole('ROLE_ADMIN')"><a th:href="@{/logged/donationList}">Moje zbiórki</a></li>
+                    <li><a th:href="@{/logout}">Wyloguj</a></li>
+                </ul>
+            </li>
         </ul>
 
         <ul>
