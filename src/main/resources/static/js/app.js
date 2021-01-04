@@ -173,13 +173,14 @@ document.addEventListener("DOMContentLoaded", function() {
     new FormSteps(form);
   }
 
-  const addB = document.getElementById("addB");
+  const summaryB = document.getElementById("summaryButton");
 
-  addB.addEventListener("click", function () {
+  summaryB.addEventListener("click", function () {
 
     const bagsQty = document.getElementById("bags-qty");
-    const institutionEvent = document.getElementById("institution-event");
-    const categoriesEvent = document.getElementById("categories-event");
+
+    // const institutionEvent = document.getElementById("institution-event");
+    // const categoriesEvent = document.getElementById("categories-event");
     const streetEvent = document.getElementById("street-event");
     const cityEvent = document.getElementById("city-event");
     const zipCodeEvent = document.getElementById("zipCode-event");
@@ -189,9 +190,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const commentEvent = document.getElementById("comment-event");
 
     const quantity = document.getElementById("quantity");
-
-    const institution = document.querySelector('input[class="checkboxRadio"]:checked ~ span.description div.title').innerHTML;
-    var inputElements = document.querySelectorAll('input[name="categories"]:checked ~ span.description');
+    //
+    // const institution = document.querySelector('input[class="checkboxRadio"]:checked ~ span.description div.title').innerHTML;
+    // const inputElements = document.querySelectorAll('input[name="categories"]:checked ~ span.description');
     const street = document.getElementById("street");
     const city = document.getElementById("city");
     const zipCode = document.getElementById("zipCode");
@@ -201,8 +202,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const comment = document.getElementById("comment");
 
     const newRow = document.createElement("span");
-    const institutionNew = document.createElement("span");
-    const categoriesNew = document.createElement("span");
+    // const institutionNew = document.createElement("span");
+    // const categoriesNew = document.createElement("span");
     const streetNew = document.createElement("span");
     const cityNew = document.createElement("span");
     const zipCodeNew = document.createElement("span");
@@ -213,44 +214,44 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-    var checkedValue = "";
-    var categories;
-    for(var i=0; inputElements[i]; ++i){
-      if(inputElements[i].innerHTML){
-        categories = inputElements[i].innerHTML;
-        checkedValue +=  categories + ", " ;
-      }
-    }
+    // var checkedValue = "";
+    // var categories;
+    // for(var i=0; inputElements[i]; ++i){
+    //   if(inputElements[i].innerHTML){
+    //     categories = inputElements[i].innerHTML;
+    //     checkedValue +=  categories + ", " ;
+    //   }
+    // }
+    //
+    // console.log(
+    //     checkedValue
+    //
+    //     ,quantity.value
+    //     ,street.value
+    //     ,city.value
+    //     ,zipCode.value
+    //     ,phone.value
+    //     ,date.value
+    //     ,time.value
+    //     ,comment.value
+    // )
 
-    console.log(
-        checkedValue
-
-        ,quantity.value
-        ,street.value
-        ,city.value
-        ,zipCode.value
-        ,phone.value
-        ,date.value
-        ,time.value
-        ,comment.value
-    )
-
-    newRow.innerHTML = `${quantity.value} `
-    institutionNew.innerHTML = institution;
-    categoriesNew.innerHTML = checkedValue;
-    streetNew.innerHTML = `${street.value} `
-    cityNew.innerHTML = `${city.value} `
-    zipCodeNew.innerHTML = `${zipCode.value} `
-    phoneNew.innerHTML = `${phone.value} `
-    dateNew.innerHTML = `${date.value} `
-    timeNew.innerHTML = `${time.value} `
-    commentNew.innerHTML = `${comment.value} `
+    newRow.innerText = `${quantity.value}`
+    // institutionNew.innerText = institution;
+    // categoriesNew.innerText = checkedValue;
+    streetNew.innerText = `${street.value} `
+    cityNew.innerText = `${city.value} `
+    zipCodeNew.innerText = `${zipCode.value} `
+    phoneNew.innerText = `${phone.value} `
+    dateNew.innerText = `${date.value} `
+    timeNew.innerText = `${time.value} `
+    commentNew.innerText = `${comment.value} `
 
 
 
     bagsQty.appendChild(newRow)
-    institutionEvent.appendChild(institutionNew)
-    categoriesEvent.appendChild(categoriesNew)
+    // institutionEvent.appendChild(institutionNew)
+    // categoriesEvent.appendChild(categoriesNew)
     streetEvent.appendChild(streetNew)
     cityEvent.appendChild(cityNew)
     zipCodeEvent.appendChild(zipCodeNew)
@@ -260,31 +261,31 @@ document.addEventListener("DOMContentLoaded", function() {
     commentEvent.appendChild(commentNew)
   })
 
-  const ret = document.getElementById("ret");
-  ret.addEventListener("click", function () {
-    var bagsQty = document.getElementById("bags-qty").lastElementChild;
-    var institutionEvent = document.getElementById("institution-event").lastElementChild;
-    var categoriesEvent = document.getElementById("categories-event").lastElementChild;
-    var streetEvent = document.getElementById("street-event").lastElementChild;
-    var cityEvent = document.getElementById("city-event").lastElementChild;
-    var zipCodeEvent = document.getElementById("zipCode-event").lastElementChild;
-    var phoneEvent = document.getElementById("phone-event").lastElementChild;
-    var dateEvent = document.getElementById("date-event").lastElementChild;
-    var timeEvent = document.getElementById("time-event").lastElementChild;
-    var commentEvent = document.getElementById("comment-event").lastElementChild;
-
-    bagsQty.innerHTML = "";
-    institutionEvent.innerHTML = "";
-    categoriesEvent.innerHTML = "";
-    streetEvent.innerHTML = "";
-    cityEvent.innerHTML = "";
-    zipCodeEvent.innerHTML = "";
-    phoneEvent.innerHTML = "";
-    bagsQty.innerHTML = "";
-    dateEvent.innerHTML = "";
-    timeEvent.innerHTML = "";
-    commentEvent.innerHTML = "";
-  })
+  // const ret = document.getElementById("ret");
+  // ret.addEventListener("click", function () {
+  //   var bagsQty = document.getElementById("bags-qty").lastElementChild;
+  //   var institutionEvent = document.getElementById("institution-event").lastElementChild;
+  //   var categoriesEvent = document.getElementById("categories-event").lastElementChild;
+  //   var streetEvent = document.getElementById("street-event").lastElementChild;
+  //   var cityEvent = document.getElementById("city-event").lastElementChild;
+  //   var zipCodeEvent = document.getElementById("zipCode-event").lastElementChild;
+  //   var phoneEvent = document.getElementById("phone-event").lastElementChild;
+  //   var dateEvent = document.getElementById("date-event").lastElementChild;
+  //   var timeEvent = document.getElementById("time-event").lastElementChild;
+  //   var commentEvent = document.getElementById("comment-event").lastElementChild;
+  //
+  //   bagsQty.innerHTML = "";
+  //   institutionEvent.innerHTML = "";
+  //   categoriesEvent.innerHTML = "";
+  //   streetEvent.innerHTML = "";
+  //   cityEvent.innerHTML = "";
+  //   zipCodeEvent.innerHTML = "";
+  //   phoneEvent.innerHTML = "";
+  //   bagsQty.innerHTML = "";
+  //   dateEvent.innerHTML = "";
+  //   timeEvent.innerHTML = "";
+  //   commentEvent.innerHTML = "";
+  // })
 
 
 
