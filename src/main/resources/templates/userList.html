@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <title>List Uzytkowników</title>
     <script src ="http://code.jquery.com/jquery-1.11.2.min.js"></script>
     <link th:href="@{/css/style.css}" rel='stylesheet' type='text/css' />
 
@@ -24,33 +24,29 @@
 </header>
 
 <section class="login-page">
-    <h2 th:text="'Hej '+ ${firstName} + ' ,poniżej znajdziesz informację dotyczące Fundacji z którymi współpracujemy'"> </h2>
+    <h2 th:text="'Hej '+ ${firstName} + ' ,poniżej znajdziesz informację dotyczące użytkowników'"> </h2>
 </section>
 
 <div style="text-align: center;background-color:  #deb1a7;border-radius: 3px">
     <div style="color: black;text-align: center;font-size: 20px;font-weight: bold;" th:text="'Lista fundacji'"></div><br/><br/>
     <table  style="color: black;text-align: left;width:100%;border: solid 1px;font-size: 20px">
         <tr style="border: solid 1px">
-            <th class="tables">Nazwa Fundacji</th>
-            <th class="tables">Opis</th>
-            <th sec:authorize="hasRole('ROLE_ADMIN')" class="tables">Status</th>
+            <th class="tables">Email</th>
+            <th class="tables">Imię</th>
+            <th class="tables">Nazwisko</th>
             <th sec:authorize="hasRole('ROLE_ADMIN')" class="tables">Edytuj</th>
             <th sec:authorize="hasRole('ROLE_ADMIN')" class="tables" id="delete">Usuń</th>
         </tr>
-        <tr style="border: solid 1px" th:each="institution: ${institutions}">
+        <tr style="border: solid 1px" th:each="user: ${users}">
 
-            <td th:text="${institution.name}"></td>
-            <td th:text="${institution.description}"></td>
-            <td sec:authorize="hasRole('ROLE_ADMIN')" th:switch="${institution.enabled}"  class="tables">
-                <span th:case="true" th:text="'Aktywna'"></span>
-                <span th:case="false" th:text="'Nie aktywna'"></span>
-                <span th:case="*" th:text="Nieznany"></span>
-            </td>
-            <td  sec:authorize="hasRole('ROLE_ADMIN')" style="cursor: pointer" title="Naciśnij żeby sprawdzić szczegóły i móc edytować" class="tables" >
-                <a  th:href="@{/admin/institution/{id}(id=${institution.id})}"><div th:text="${institution.name}"></div></a>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.firstName}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td  sec:authorize="hasRole('ROLE_ADMIN')" style="cursor: pointer" title="Naciśnij żeby edytować" class="tables" >
+                <a  th:href="@{/admin/user/{id}(id=${user.id})}"><div th:text="${user.email}"></div></a>
             </td>
             <td  sec:authorize="hasRole('ROLE_ADMIN')" style="cursor: pointer" title="Naciśnij żeby usunąć" class="tables" >
-                <a  th:href="@{/admin/deleteInstitution/{id}(id=${institution.id})}"><div th:text="${institution.name}"></div></a>
+                <a  th:href="@{/admin/deleteUser/{id}(id=${user.id})}"><div th:text="${user.email}"></div></a>
             </td>
         </tr>
     </table>

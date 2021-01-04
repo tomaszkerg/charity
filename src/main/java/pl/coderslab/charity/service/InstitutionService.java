@@ -48,14 +48,15 @@ public class InstitutionService implements InstitutionServiceI{
 
     @Override
     public InstitutionEntity saveInstitution(InstitutionDto institutionDto) {
-        if(institutionRepository.existsById(institutionDto.getId())){
+        if(institutionDto.getId()==null){
+            return institutionRepository.save(InstitutionConverter.toEntity(institutionDto));
+
+        }else {
             InstitutionEntity institution = institutionRepository.getOne(institutionDto.getId());
             institution.setEnabled(institutionDto.getEnabled());
             institution.setName(institutionDto.getName());
             institution.setDescription(institutionDto.getDescription());
             return institutionRepository.save(institution);
-        }else {
-            return institutionRepository.save(InstitutionConverter.toEntity(institutionDto));
         }
     }
 

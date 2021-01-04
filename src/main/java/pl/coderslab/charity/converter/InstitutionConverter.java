@@ -10,6 +10,7 @@ public class InstitutionConverter {
                 .id(institution.getId())
                 .name(institution.getName())
                 .description(institution.getDescription())
+                .enabled(institution.getEnabled())
                 .build();
     }
     public static InstitutionEntity toEntity(InstitutionDto institutionDto){

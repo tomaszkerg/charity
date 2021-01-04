@@ -24,7 +24,7 @@
 </header>
 
 <section class="login-page">
-    <h2 th:text="Formularz Fundacji"> </h2>
+    <h2>Formularz Fundacji</h2>
 
     <form th:object="${institution}" th:action="@{/admin/institution}" method="post">
 
@@ -32,14 +32,11 @@
             <label>Nazwa fundacji</label>
             <input type="text" th:field="*{name}" placeholder="Nazwa Fundacji"/>
             <input type="hidden" th:field="*{id}"/>
+            <input type="hidden" th:value="true" th:field="*{enabled}"/>
         </div>
         <div class="form-group">
             <label>Opis i cel fundacji</label>
             <input type="text" th:field="*{description}" placeholder="Cel i Opis Fundacji" />
-        </div>
-        <div class="form-group">
-            <label>Aktywna</label>
-            <input type="radio" th:value="*{enabled}" name="enabled"/>
         </div>
         <div>
             <button type="submit" class="btn--large">Potwierdź</button>

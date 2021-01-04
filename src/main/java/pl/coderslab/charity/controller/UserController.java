@@ -62,4 +62,9 @@ public class UserController {
     public Long loadUserId(){
         return userService.getIdByEmail(UserUtils.username());
     }
+
+    @GetMapping("/admin/userlist")
+    public String userList(Model model){
+        model.addAttribute("users",userService.)
+    }
 }
