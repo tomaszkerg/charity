@@ -34,6 +34,8 @@
             <th class="tables">Email</th>
             <th class="tables">Imię</th>
             <th class="tables">Nazwisko</th>
+            <th class="tables">Dostawca</th>
+            <th class="tables">Status</th>
             <th sec:authorize="hasRole('ROLE_ADMIN')" class="tables">Edytuj</th>
             <th sec:authorize="hasRole('ROLE_ADMIN')" class="tables" id="delete">Usuń</th>
         </tr>
@@ -42,16 +44,22 @@
             <td th:text="${user.email}"></td>
             <td th:text="${user.firstName}"></td>
             <td th:text="${user.lastName}"></td>
-            <td  sec:authorize="hasRole('ROLE_ADMIN')" style="cursor: pointer" title="Naciśnij żeby edytować" class="tables" >
+            <td th:text="${user.authProvider}"></td>
+            <td th:switch="${user.enabled}"  class="tables">
+                <span th:case="true" th:text="'Aktywna'"></span>
+                <span th:case="false" th:text="'Nie aktywna'"></span>
+                <span th:case="*" th:text="Nieznany"></span>
+            </td>
+            <td style="cursor: pointer" title="Naciśnij żeby edytować" class="tables" >
                 <a  th:href="@{/admin/user/{id}(id=${user.id})}"><div th:text="${user.email}"></div></a>
             </td>
-            <td  sec:authorize="hasRole('ROLE_ADMIN')" style="cursor: pointer" title="Naciśnij żeby usunąć" class="tables" >
+            <td style="cursor: pointer" title="Naciśnij żeby usunąć" class="tables" >
                 <a  th:href="@{/admin/deleteUser/{id}(id=${user.id})}"><div th:text="${user.email}"></div></a>
             </td>
         </tr>
     </table>
     <br/>
-    <a th:href="@{/admin/formInstitution}"><button class="btn btn--highlighted" style="cursor:pointer;font-size: 20px;font-weight: bold;margin-left: 87%">Dodaj Fundacje</button></a>
+    <a th:href="@{/admin/user}"><button class="btn btn--highlighted" style="cursor:pointer;font-size: 20px;font-weight: bold;margin-left: 85%">Dodaj Użytkownika</button></a>
 </div><br/><br/>
 
 <footer>

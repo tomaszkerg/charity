@@ -7,9 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.coderslab.charity.dto.CategoryDto;
 import pl.coderslab.charity.dto.UserDto;
+import pl.coderslab.charity.dto.UserListDto;
 import pl.coderslab.charity.service.UserService;
 import pl.coderslab.charity.utils.UserUtils;
 
@@ -63,8 +65,25 @@ public class UserController {
         return userService.getIdByEmail(UserUtils.username());
     }
 
-    @GetMapping("/admin/userlist")
+    @GetMapping("/admin/userList")
     public String userList(Model model){
-        model.addAttribute("users",userService.)
+        model.addAttribute("users",userService.getAllUsers());
+        return "userList";
+    }
+    @GetMapping("/admin/user/{id}")
+    public String editUser(@PathVariable Long id, Model model){
+        model.addAttribute("user",userService.getUser(id));
+        return "formUser";
+    }
+    @GetMapping("/admin/user")
+    public String addUser(Model model){
+        model.addAttribute("user",new UserListDto());
+        return "formUser";
+    }
+
+    @PostMapping("/admin/user")
+    public String submitUser(UserListDto userListDto){
+        userService.adminSave(userListDto);
+        return "userList";
     }
 }
