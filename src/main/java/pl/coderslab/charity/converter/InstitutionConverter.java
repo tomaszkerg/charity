@@ -12,4 +12,12 @@ public class InstitutionConverter {
                 .description(institution.getDescription())
                 .build();
     }
+    public static InstitutionEntity toEntity(InstitutionDto institutionDto){
+        InstitutionEntity institution = new InstitutionEntity();
+        institution.setId(institutionDto.getId());
+        institution.setName(institutionDto.getName());
+        institution.setDescription(institutionDto.getDescription());
+        institution.setEnabled(institutionDto.getEnabled());
+        return institution;
+    }
 }

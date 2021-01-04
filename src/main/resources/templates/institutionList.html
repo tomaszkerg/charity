@@ -41,15 +41,15 @@
             <td th:text="${institution.name}"></td>
             <td th:text="${institution.description}"></td>
             <td  sec:authorize="hasRole('ROLE_ADMIN')" style="cursor: pointer" title="Naciśnij żeby sprawdzić szczegóły i móc edytować" class="tables" >
-                <a  th:href="@{/admin/editInstitution/{id}(id=${institution.id})}"><div th:text="${institution.name}"></div></a>
+                <a  th:href="@{/admin/institution/{id}(id=${institution.id})}"><div th:text="${institution.name}"></div></a>
             </td>
-            <td  sec:authorize="hasRole('ROLE_ADMIN')" style="cursor: pointer" title="Naciśnij żeby sprawdzić szczegóły i móc edytować" class="tables" >
+            <td  sec:authorize="hasRole('ROLE_ADMIN')" style="cursor: pointer" title="Naciśnij żeby usunąć" class="tables" >
                 <a  th:href="@{/admin/deleteInstitution/{id}(id=${institution.id})}"><div th:text="${institution.name}"></div></a>
             </td>
         </tr>
     </table>
     <br/>
-    <a th:href="@{/admin/formInstitution}"><button style="cursor:pointer;font-size: 20px;font-weight: bold;margin-left: 87%">Dodaj Fundacje</button></a>
+    <a th:href="@{/admin/formInstitution}"><button class="btn btn--highlighted" style="cursor:pointer;font-size: 20px;font-weight: bold;margin-left: 87%">Dodaj Fundacje</button></a>
 </div><br/><br/>
 
 <footer>

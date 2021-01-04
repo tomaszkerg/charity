@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src ="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <link th:href="@{/css/style.css}" rel='stylesheet' type='text/css' />
+
+</head>
+<body>
+<header>
+    <nav class="container container--70">
+        <span th:include="fragments/loginCheck :: loginCheck"></span>
+
+        <span th:include="fragments/header :: header"></span>
+        <span sec:authorize="hasRole('ROLE_ADMIN')">
+        <br/><br/><br/><br/>
+        <div  style="font-weight: normal;font-size: 15px">Panel Admina</div>
+        <span th:include="fragments/adminMenu :: adminMenu"></span>
+        </span>
+    </nav>
+</header>
+
+<section class="login-page">
+    <h2 th:text="Formularz Fundacji"> </h2>
+
+    <form th:object="${institution}" th:action="@{/admin/institution}" method="post">
+
+        <div class="form-group">
+            <label>Nazwa fundacji</label>
+            <input type="text" th:field="*{name}" placeholder="Nazwa Fundacji"/>
+            <input type="hidden" th:field="*{id}"/>
+        </div>
+        <div class="form-group">
+            <label>Opis i cel fundacji</label>
+            <input type="text" th:field="*{description}" placeholder="Cel i Opis Fundacji" />
+        </div>
+        <div class="form-group">
+            <label>Aktywna</label>
+            <input type="radio" th:value="*{enabled}" name="enabled"/>
+        </div>
+        <div>
+            <button type="submit" class="btn--large">Potwierdź</button>
+        </div>
+    </form>
+
+</section>
+<footer>
+    <span th:include="fragments/footer :: footer"></span>
+</footer>
+</body>
+</html>

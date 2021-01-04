@@ -45,4 +45,23 @@ public class InstitutionService implements InstitutionServiceI{
                 .map(InstitutionConverter::toDto)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public InstitutionEntity saveInstitution(InstitutionDto institutionDto) {
+        if(institutionRepository.existsById(institutionDto.getId())){
+            InstitutionEntity institution = institutionRepository.getOne(institutionDto.getId());
+            institution.setEnabled(institutionDto.getEnabled());
+            institution.setName(institutionDto.getName());
+            institution.setDescription(institutionDto.getDescription());
+            return institutionRepository.save(institution);
+        }else {
+            return institutionRepository.save(InstitutionConverter.toEntity(institutionDto));
+        }
+    }
+
+    @Override
+    public InstitutionDto getInstitution(Long id) {
+        return InstitutionConverter.toDto(institutionRepository.getOne(id));
+    }
+
 }
