@@ -173,121 +173,42 @@ document.addEventListener("DOMContentLoaded", function() {
     new FormSteps(form);
   }
 
-  const summaryB = document.getElementById("summaryButton");
+  const buttonSummary = document.getElementById("summaryButton");
+  buttonSummary.addEventListener("click", function updateConfirmation(){
+    const sack = document.querySelector("#quantityBags").value;
+    let categories = document.querySelectorAll('input[name="categories"]:checked ~ span.description');
+    let sumOfCategories = "";
+    let category;
+    for(let i=0; categories[i]; ++i){
+      if(categories[i].innerHTML != null){
+        category = categories[i].innerHTML;
+      }
+      sumOfCategories += category+"; ";
+    }
+    sumOfCategories = sumOfCategories.substring(0,sumOfCategories.length-2);
+    document.getElementById("bags-qty").innerHTML = sack+ " worków zawierających: "+sumOfCategories;
 
-  summaryB.addEventListener("click", function () {
+    const institution = document.querySelector('input[name="institution"]:checked ~ span.description div.title').innerHTML;
+    document.getElementById("institution-event").innerHTML = institution;
 
-    const bagsQty = document.getElementById("bags-qty");
+    const street = document.querySelector('#street').value;
+    document.getElementById("street-event").innerHTML = 'ulica: ' + street;
+    const city = document.querySelector('#city').value;
+    document.getElementById("city-event").innerHTML = 'miasto: ' + city;
+    const zipCode = document.querySelector('#zipCode').value;
+    document.getElementById("zipcode-event").innerHTML = 'kod pocztowy: ' + zipCode;
+    const phone = document.querySelector('#phone').value;
+    document.getElementById("phone-event").innerHTML = 'telefon: ' + phone;
+    const pickUpDate = document.querySelector('#date').value;
+    document.getElementById("date-event").innerHTML = 'data: ' + pickUpDate;
+    const pickUpTime = document.querySelector('#time').value;
+    document.getElementById("time-event").innerHTML = 'czas: ' + pickUpTime;
 
-    // const institutionEvent = document.getElementById("institution-event");
-    // const categoriesEvent = document.getElementById("categories-event");
-    const streetEvent = document.getElementById("street-event");
-    const cityEvent = document.getElementById("city-event");
-    const zipCodeEvent = document.getElementById("zipCode-event");
-    const phoneEvent = document.getElementById("phone-event");
-    const dateEvent = document.getElementById("date-event");
-    const timeEvent = document.getElementById("time-event");
-    const commentEvent = document.getElementById("comment-event");
-
-    const quantity = document.getElementById("quantity");
-    //
-    // const institution = document.querySelector('input[class="checkboxRadio"]:checked ~ span.description div.title').innerHTML;
-    // const inputElements = document.querySelectorAll('input[name="categories"]:checked ~ span.description');
-    const street = document.getElementById("street");
-    const city = document.getElementById("city");
-    const zipCode = document.getElementById("zipCode");
-    const phone = document.getElementById("phone");
-    const date = document.getElementById("date");
-    const time = document.getElementById("time");
-    const comment = document.getElementById("comment");
-
-    const newRow = document.createElement("span");
-    // const institutionNew = document.createElement("span");
-    // const categoriesNew = document.createElement("span");
-    const streetNew = document.createElement("span");
-    const cityNew = document.createElement("span");
-    const zipCodeNew = document.createElement("span");
-    const phoneNew = document.createElement("span");
-    const dateNew = document.createElement("span");
-    const timeNew = document.createElement("span");
-    const commentNew = document.createElement("span");
-
-
-
-    // var checkedValue = "";
-    // var categories;
-    // for(var i=0; inputElements[i]; ++i){
-    //   if(inputElements[i].innerHTML){
-    //     categories = inputElements[i].innerHTML;
-    //     checkedValue +=  categories + ", " ;
-    //   }
-    // }
-    //
-    // console.log(
-    //     checkedValue
-    //
-    //     ,quantity.value
-    //     ,street.value
-    //     ,city.value
-    //     ,zipCode.value
-    //     ,phone.value
-    //     ,date.value
-    //     ,time.value
-    //     ,comment.value
-    // )
-
-    newRow.innerText = `${quantity.value}`
-    // institutionNew.innerText = institution;
-    // categoriesNew.innerText = checkedValue;
-    streetNew.innerText = `${street.value} `
-    cityNew.innerText = `${city.value} `
-    zipCodeNew.innerText = `${zipCode.value} `
-    phoneNew.innerText = `${phone.value} `
-    dateNew.innerText = `${date.value} `
-    timeNew.innerText = `${time.value} `
-    commentNew.innerText = `${comment.value} `
-
-
-
-    bagsQty.appendChild(newRow)
-    // institutionEvent.appendChild(institutionNew)
-    // categoriesEvent.appendChild(categoriesNew)
-    streetEvent.appendChild(streetNew)
-    cityEvent.appendChild(cityNew)
-    zipCodeEvent.appendChild(zipCodeNew)
-    phoneEvent.appendChild(phoneNew)
-    dateEvent.appendChild(dateNew)
-    timeEvent.appendChild(timeNew)
-    commentEvent.appendChild(commentNew)
+    const pickUpComment = document.querySelector('#comment-event').value;
+    if (pickUpComment === ""){
+      document.getElementById("comment").innerHTML = "uwagi: Brak uwag"
+    } else {
+      document.getElementById("comment").innerHTML = 'uwagi: ' + pickUpComment;
+    }
   })
-
-  // const ret = document.getElementById("ret");
-  // ret.addEventListener("click", function () {
-  //   var bagsQty = document.getElementById("bags-qty").lastElementChild;
-  //   var institutionEvent = document.getElementById("institution-event").lastElementChild;
-  //   var categoriesEvent = document.getElementById("categories-event").lastElementChild;
-  //   var streetEvent = document.getElementById("street-event").lastElementChild;
-  //   var cityEvent = document.getElementById("city-event").lastElementChild;
-  //   var zipCodeEvent = document.getElementById("zipCode-event").lastElementChild;
-  //   var phoneEvent = document.getElementById("phone-event").lastElementChild;
-  //   var dateEvent = document.getElementById("date-event").lastElementChild;
-  //   var timeEvent = document.getElementById("time-event").lastElementChild;
-  //   var commentEvent = document.getElementById("comment-event").lastElementChild;
-  //
-  //   bagsQty.innerHTML = "";
-  //   institutionEvent.innerHTML = "";
-  //   categoriesEvent.innerHTML = "";
-  //   streetEvent.innerHTML = "";
-  //   cityEvent.innerHTML = "";
-  //   zipCodeEvent.innerHTML = "";
-  //   phoneEvent.innerHTML = "";
-  //   bagsQty.innerHTML = "";
-  //   dateEvent.innerHTML = "";
-  //   timeEvent.innerHTML = "";
-  //   commentEvent.innerHTML = "";
-  // })
-
-
-
-
 });

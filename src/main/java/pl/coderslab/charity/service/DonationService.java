@@ -54,4 +54,10 @@ public class DonationService implements DonationServiceI{
                 .map(InstitutionConverter::toDto)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public boolean save(DonationEntity donation) {
+        DonationEntity donationEntity = donationRepository.save(donation);
+        return donationRepository.existsById(donationEntity.getId());
+    }
 }

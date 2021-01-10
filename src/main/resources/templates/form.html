@@ -108,7 +108,7 @@
             <div class="form-group form-group--inline">
               <label>
                 Liczba 60l worków:
-                <input type="number" name="quantity" th:field="*{quantity}" step="1" min="1" />
+                <input id="quantityBags" type="number" name="quantity" th:field="*{quantity}" step="1" min="1" />
               </label>
             </div>
 
@@ -174,11 +174,11 @@
               <div class="form-section--column">
                 <h4>Termin odbioru</h4>
                 <div class="form-group form-group--inline">
-                  <label> Data <input type="date" name="pickUpDate" th:field="*{pickUpDate}" id="date"/> </label>
+                  <label> Data <input type="date" name="date" th:field="*{pickUpDate}" id="date"/> </label>
                 </div>
 
                 <div class="form-group form-group--inline">
-                  <label> Godzina <input type="time" name="pickUpTime" th:field="*{pickUpTime}" id="time" /> </label>
+                  <label> Godzina <input type="time" th:field="*{pickUpTime}" id="time" min="00:00:00"/> </label>
                 </div>
 
                 <div class="form-group form-group--inline">
@@ -206,14 +206,12 @@
                   <li>
                     <span class="icon icon-bag"></span>
                     <span class="summary--text" id="bags-qty"></span>
-                    <span style="margin-left: 0.25em;display:inline-block;"> worki z</span>
                     <span class="summary--text" id="categories-event" style="margin-left: 0.25em;display:inline-block;"> </span>
                     <span style="margin-left: 0.25em;display:inline-block;">  dla dzieci </span>
                   </li>
 
                   <li>
                     <span class="icon icon-hand"></span>
-                    <span>Dla fundacji: </span>
                     <span style="margin-left: 0.25em;display:inline-block;" class="summary--text" id="institution-event"></span>
                   </li>
                 </ul>
@@ -225,7 +223,7 @@
                   <ul>
                     <li id="street-event"></li>
                     <li id="city-event"></li>
-                    <li id="zipCode-event"></li>
+                    <li id="zipcode-event"></li>
                     <li id="phone-event"></li>
                   </ul>
                 </div>

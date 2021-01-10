@@ -31,7 +31,7 @@ public class DonationEntity extends ParentEntity{
     private String phoneNumber;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
-    @DateTimeFormat(pattern = "hh-mm")
+    @DateTimeFormat(pattern = "HH-mm")
     private LocalTime pickUpTime;
     private String pickUpComment;
 }
